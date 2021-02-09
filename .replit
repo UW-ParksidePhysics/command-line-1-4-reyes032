@@ -1,6 +1,6 @@
-# Concepts addressed:shell directory file premission redirection
-~/command-line-1-4-reyes032$ ls
-1-WhatIsTheShell.txt  3-ExploringTheSystemOutput.txt         README.md
+
+1-WhatIsTheShell# Concepts addressed:shell direedirectionctory file premission r
+.txt  3-ExploringTheSystemOutput.txt         README.md
 2-Navigation.txt      4-ManipulatingFilesAndDirectories.txt
 ~/command-line-1-4-reyes032$ ls /usr
 bin  doc  games  include  lib  lib32  libexec  local  sbin  share  src
