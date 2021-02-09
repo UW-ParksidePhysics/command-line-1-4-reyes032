@@ -37,4 +37,4 @@ picture.jpg: cannot open `picture.jpg' (No such file or directory)
 bash: less: command not found
 ~/command-line-1-4-reyes032$ less /etc/passwd
 bash: less: command not found
-~/command-line-1-4-reyes032$ 
+~/command-line-1-4-reyes0

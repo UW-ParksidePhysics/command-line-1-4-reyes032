@@ -1,1 +1,113 @@
-
+# Concepts addressed:prompt shell directory file premission
+~/command-line-1-4-reyes032$ cd
+~$ mkdir plarground
+~$ cd playground
+bash: cd: playground: No such file or directory
+~$ mkdir playground
+~$ cd playground
+~/playground$ mkdir dir1 dir2
+~/playground$ cp /etc/password
+cp: missing destination file operand after '/etc/password'
+Try 'cp --help' for more information.
+~/playground$ cp /etc/password .
+cp: cannot stat '/etc/password': No such file or directory
+~/playground$ ls -l
+total 8
+drwxr-xr-x 2 runner runner 4096 Feb  9 21:51 dir1
+drwxr-xr-x 2 runner runner 4096 Feb  9 21:51 dir2
+~/playground$ cp -v /etc/passwd .
+'/etc/passwd' -> './passwd'
+~/playground$ cp -i /etc/passwd .
+cp: overwrite './passwd'? y
+~/playground$ mv passwd fun
+~/playground$ mv fun dir1
+~/playground$ mv dir1/fun dir2
+~/playground$ mv dir2/fun .
+~/playground$ mv fun dir1
+~/playground$ mv dir1 dir2
+~/playground$ ls -l dir2
+total 4
+drwxr-xr-x 2 runner runner 4096 Feb  9 21:57 dir1
+~/playground$ ls -l dir2/dir1
+total 4
+-rw-r--r-- 1 runner runner 1065 Feb  9 21:54 fun
+~/playground$ mv dir2/dir .
+mv: cannot stat 'dir2/dir': No such file or directory
+~/playground$ mv dir2/dir1 .
+~/playground$ mv dir1/fun .
+~/playground$ ln fun fun-card
+~/playground$ ln fun fun-hard
+~/playground$ ln fun dir1/fun-hard
+~/playground$ ln fun dir2/fun-hard
+~/playground$ ls -l
+total 20
+drwxr-xr-x 2 runner runner 4096 Feb  9 22:02 dir1
+drwxr-xr-x 2 runner runner 4096 Feb  9 22:03 dir2
+-rw-r--r-- 5 runner runner 1065 Feb  9 21:54 fun
+-rw-r--r-- 5 runner runner 1065 Feb  9 21:54 fun-card
+-rw-r--r-- 5 runner runner 1065 Feb  9 21:54 fun-hard
+~/playground$ ls -li
+total 20
+3419380 drwxr-xr-x 2 runner runner 4096 Feb  9 22:02 dir1
+3419381 drwxr-xr-x 2 runner runner 4096 Feb  9 22:03 dir2
+3411534 -rw-r--r-- 5 runner runner 1065 Feb  9 21:54 fun
+3411534 -rw-r--r-- 5 runner runner 1065 Feb  9 21:54 fun-card
+3411534 -rw-r--r-- 5 runner runner 1065 Feb  9 21:54 fun-hard
+~/playground$ ln -s
+ln: missing file operand
+Try 'ln --help' for more information.
+~/playground$ ln -s fun fun -sym
+ln: invalid option -- 'y'
+Try 'ln --help' for more information.
+~/playground$ ln -s fun fun-sym
+~/playground$ ln -s ../fun dir1/fun-sym
+~/playground$ ln -s ../fun dir2/fun-sym
+~/playground$ ls -l dir1
+total 4
+-rw-r--r-- 5 runner runner 1065 Feb  9 21:54 fun-hard
+lrwxrwxrwx 1 runner runner    6 Feb  9 22:06 fun-sym -> ../fun
+~/playground$ ls -s dir1 dir1-sym
+ls: cannot access 'dir1-sym': No such file or directory
+dir1:
+total 4
+4 fun-hard  0 fun-sym
+~/playground$ ln -s dir1 dir1-sym
+~/playground$ ls -l
+total 20
+drwxr-xr-x 2 runner runner 4096 Feb  9 22:06 dir1
+lrwxrwxrwx 1 runner runner    4 Feb  9 22:10 dir1-sym -> dir1
+drwxr-xr-x 2 runner runner 4096 Feb  9 22:06 dir2
+-rw-r--r-- 5 runner runner 1065 Feb  9 21:54 fun
+-rw-r--r-- 5 runner runner 1065 Feb  9 21:54 fun-card
+-rw-r--r-- 5 runner runner 1065 Feb  9 21:54 fun-hard
+lrwxrwxrwx 1 runner runner    3 Feb  9 22:05 fun-sym -> fun
+~/playground$ rm fun-hard
+~/playground$ ls -l
+total 16
+drwxr-xr-x 2 runner runner 4096 Feb  9 22:06 dir1
+lrwxrwxrwx 1 runner runner    4 Feb  9 22:10 dir1-sym -> dir1
+drwxr-xr-x 2 runner runner 4096 Feb  9 22:06 dir2
+-rw-r--r-- 4 runner runner 1065 Feb  9 21:54 fun
+-rw-r--r-- 4 runner runner 1065 Feb  9 21:54 fun-card
+lrwxrwxrwx 1 runner runner    3 Feb  9 22:05 fun-sym -> fun
+~/playground$ rm -i fun
+rm: remove regular file 'fun'? y
+~/playground$ ls -l
+total 12
+drwxr-xr-x 2 runner runner 4096 Feb  9 22:06 dir1
+lrwxrwxrwx 1 runner runner    4 Feb  9 22:10 dir1-sym -> dir1
+drwxr-xr-x 2 runner runner 4096 Feb  9 22:06 dir2
+-rw-r--r-- 3 runner runner 1065 Feb  9 21:54 fun-card
+lrwxrwxrwx 1 runner runner    3 Feb  9 22:05 fun-sym -> fun
+~/playground$ less fun-sym
+bash: less: command not found
+~/playground$ rm fun-sym dir1-sym
+~/playground$ ls -l
+total 12
+drwxr-xr-x 2 runner runner 4096 Feb  9 22:06 dir1
+drwxr-xr-x 2 runner runner 4096 Feb  9 22:06 dir2
+-rw-r--r-- 3 runner runner 1065 Feb  9 21:54 fun-card
+~/playground$ cd
+~$ rm -r playground
+~$ ^C
+~$
